@@ -5,10 +5,61 @@ body {
 
 }
 
-#car canvas {
-    width: 100vw !important;
-    height: 100vh !important;
+#outer canvas {
+    width: 100em ;
+    height: 100em;
     position: absolute;
     top: 0;
     left: 0;
+    background-color: aquamarine;
+}
+
+#car {
+    width: 100em;
+    height: 80em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#info {
+	position: absolute;
+	top: 0em;
+    height: 5em;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	display:flex;
+    background-color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#buton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#buton:hover { background-color: #45a049;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    #buton {
+        width: 100%;
+        padding: 15px;
+    }
+
+    #info {
+        flex-direction: column;
+        width: 90%;
+    }
 }
