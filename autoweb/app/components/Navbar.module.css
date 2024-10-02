@@ -1,6 +1,9 @@
 .nav {
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .container {
@@ -13,58 +16,83 @@
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
   color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: var(--secondary-color);
 }
 
 .menu {
   display: flex;
   list-style-type: none;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: center;
 }
 
 .menu li a {
   text-decoration: none;
   color: var(--text-color);
+  font-weight: 500;
   transition: color 0.3s ease;
+  position: relative;
 }
 
-.menu li a:hover {
-  color: var(--primary-color);
+.menu li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.menu li a:hover::after {
+  width: 100%;
 }
 
 .button {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   background-color: var(--primary-color);
-  color: white;
+  color: white !important;
   border: none;
   border-radius: 4px;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button:hover {
   background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .adminButton {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: var(--secondary-color);
-  color: white;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--gray-dark);
+  color: white !important;
   border: none;
   border-radius: 4px;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .adminButton:hover {
-  background-color: var(--primary-color);
+  background-color: var(--text-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .menuToggle {
@@ -86,12 +114,13 @@
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 70px;
     left: 0;
     right: 0;
     background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 1rem;
+    gap: 1rem;
   }
 
   .menu.open {
@@ -100,5 +129,17 @@
 
   .menuToggle {
     display: flex;
+  }
+
+  .menuToggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menuToggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menuToggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
   }
 }

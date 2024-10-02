@@ -8,7 +8,7 @@ export default function Kajene() {
         <div className={styles.grid}>
           <div className={styles.column}>
             <h3 className={styles.title}>AutoWeb Pro</h3>
-            <p>Jūsu uzticamais partneris visām auto remonta vajadzībām.</p>
+            <p>Jūsu uzticamais auto remonta partneris</p>
           </div>
           <div className={styles.column}>
             <h3 className={styles.title}>Ātrās saites</h3>
@@ -25,20 +25,20 @@ export default function Kajene() {
               <li>
                 <Link href="/kontakti">Kontakti</Link>
               </li>
-              <li>
-                <Link href="/rezervet">Rezervēt vizīti</Link>
-              </li>
             </ul>
           </div>
           <div className={styles.column}>
-            <h3 className={styles.title}>Kontaktinformācija</h3>
+            <h3 className={styles.title}>Kontakti</h3>
             <p>Autoiela 123, Rīga, LV-1001</p>
-            <p>Tālrunis: +371 67890123</p>
+            <p>Tālr.: +371 67890123</p>
             <p>E-pasts: info@autoweb.lv</p>
           </div>
         </div>
         <div className={styles.copyright}>
-          <p>&copy; 2023 AutoWeb Pro. Visas tiesības aizsargātas.</p>
+          <p>
+            &copy; {new Date().getFullYear()} AutoWeb Pro. Visas tiesības
+            aizsargātas.
+          </p>
         </div>
       </div>
     </footer>
