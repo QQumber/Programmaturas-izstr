@@ -36,6 +36,11 @@ export default function Navigacija() {
               Rezervēt vizīti
             </Link>
           </li>
+          <li>
+            <Link href="/login" className={styles.adminButton}>
+              Darbinieku/Admin pieslēgšanās
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
