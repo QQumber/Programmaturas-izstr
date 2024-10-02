@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "pg": "^8.13.0",
     "three": "^0.169.0",
     "three-gltf-loader": "^1.111.0"
   },
