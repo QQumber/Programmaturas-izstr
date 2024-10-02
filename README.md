@@ -22,9 +22,8 @@ Pirms projekta iestatīšanas, pārliecinieties, ka jūsu sistēmā ir instalēt
 
 ### Aizmugursistēmas (Backend) Iestatīšana
 
-1. Klonējiet repozitoriju un pārejiet uz projekta direktoriju:
-   git clone 
-   cd autoweb
+1. Klonējiet repozitoriju:
+   git clone
 
 2. Pārejiet uz aizmugursistēmas direktoriju:
    cd backend
