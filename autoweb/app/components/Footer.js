@@ -2,38 +2,53 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="working-hours">
-        <h4>Darb. laiks</h4>
+        <h4>Darba laiks</h4>
         <ul>
           <li>
-            <span>p.</span> <span>5 - 22</span>
+            <span className="day">Pirmdiena</span>
+            <span className="time">5 - 22</span>
           </li>
           <li>
-            <span>o.</span> <span>5 - 22</span>
+            <span className="day">Otrdiena</span>
+            <span className="time">5 - 22</span>
           </li>
           <li>
-            <span>t.</span> <span>5 - 22</span>
+            <span className="day">Trešdiena</span>
+            <span className="time">5 - 22</span>
           </li>
           <li>
-            <span>c.</span> <span>5 - 22</span>
+            <span className="day">Ceturtdiena</span>
+            <span className="time">5 - 22</span>
           </li>
           <li>
-            <span>pk.</span> <span>4 - 23</span>
+            <span className="day">Piektdiena</span>
+            <span className="time">4 - 23</span>
           </li>
-          <li>
-            <span>s.</span> <span>3 - 23</span>
+          <li className="weekend">
+            <span className="day">Sestdiena</span>
+            <span className="time">3 - 23</span>
           </li>
-          <li>
-            <span>sv.</span> <span>1 - 24</span>
+          <li className="weekend">
+            <span className="day">Svētdiena</span>
+            <span className="time">---</span>
           </li>
         </ul>
       </div>
       <div className="contact-info">
         <h4>Kā mūs atrast?</h4>
         <ul>
-          <li>Tele. +371 66 666 666</li>
-          <li>Loc. Ziediņu bulvāris 53</li>
-          <li>LV-6232</li>
-          <li>autoweb@inbox.lv</li>
+          <li>
+            <i className="contact-label">Tel:</i> +371 66 666 666
+          </li>
+          <li>
+            <i className="contact-label">Adrese:</i> Ziediņu bulvāris 53
+          </li>
+          <li>
+            <i className="contact-label">Pasta ind:</i> LV-6232
+          </li>
+          <li>
+            <i className="contact-label">E-pasts:</i> autoweb@inbox.lv
+          </li>
         </ul>
       </div>
       <div className="map">
