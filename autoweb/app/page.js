@@ -1,82 +1,79 @@
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./page.module.css";
+import Navbar from "./components/Navbar";
+import Calendar from "./components/Calendar";
+import ExpertCard from "./components/Expert-card";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <h1 className={styles.title}>Laipni lūgti AutoWeb</h1>
-          <p className={styles.subtitle}>
-            Jūsu uzticamais partneris visām auto remonta vajadzībām. Ekspertu
-            serviss, godīgas cenas un ātrs darba izpildes laiks.
+    <div className="app-container">
+      <Navbar />
+      <main>
+        <section className="hero">
+          <h1>Laipni lūgti AutoWeb</h1>
+          <p>
+            Jūsu uzticamais partneris visām auto remonta vajadzībām.
+            <br />
+            Ekspertu serviss godīgas cenas un ātra darba izpildes laiks.
           </p>
-          <div className={styles.buttonGroup}>
-            <Link href="/rezervet" className={styles.button}>
-              Rezervēt vizīti
-            </Link>
-            <Link href="/pakalpojumi" className={styles.buttonOutline}>
-              Mūsu pakalpojumi
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className={styles.features}>
-        <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Kāpēc izvēlēties mūs</h2>
-          <div className={styles.featureGrid}>
-            {[
-              {
-                title: "Eksperti mehāniķi",
-                description:
-                  "Mūsu sertificētā komanda nodrošina augstākās kvalitātes servisu jūsu automašīnai.",
-                icon: "👨‍🔧",
-              },
-              {
-                title: "Moderns aprīkojums",
-                description:
-                  "Mēs izmantojam jaunākās diagnostikas un remonta iekārtas precīziem rezultātiem.",
-                icon: "🔧",
-              },
-              {
-                title: "Caurspīdīga cenu politika",
-                description:
-                  "Saņemiet detalizētas tāmes un godīgas cenas visiem mūsu pakalpojumiem.",
-                icon: "💰",
-              },
-              {
-                title: "Ātrs darba izpildes laiks",
-                description:
-                  "Mēs novērtējam jūsu laiku un cenšamies pabeigt remontdarbus pēc iespējas ātrāk.",
-                icon: "⏱️",
-              },
-            ].map((feature, index) => (
-              <div key={index} className={styles.featureCard}>
-                <div className={styles.featureIcon}>{feature.icon}</div>
-                <h3 className={styles.featureTitle}>{feature.title}</h3>
-                <p className={styles.featureDescription}>
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+        <section className="experts">
+          <h2>Kāpēc izvēlēties mūs</h2>
+          <div className="expert-cards">
+            <ExpertCard
+              icon="👨‍🔧"
+              title="Eksperti mehāniķi"
+              description="Mūsu sertificētā komanda nodrošina augstākās kvalitātes servisu jūsu automašīnai."
+            />
+            <ExpertCard
+              icon="🔧"
+              title="Eksperti mehāniķi"
+              description="Mūsu sertificētā komanda nodrošina augstākās kvalitātes servisu jūsu automašīnai."
+            />
+            <ExpertCard
+              icon="⏰"
+              title="Eksperti mehāniķi"
+              description="Mūsu sertificētā komanda nodrošina augstākās kvalitātes servisu jūsu automašīnai."
+            />
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className={styles.cta}>
-        <div className={styles.container}>
-          <h2 className={styles.ctaTitle}>Gatavi sākt?</h2>
-          <p className={styles.ctaDescription}>
-            Rezervējiet vizīti jau šodien un izbaudiet AutoFix Pro
-            priekšrocības.
-          </p>
-          <Link href="/rezervet" className={styles.button}>
-            Rezervēt tagad
-          </Link>
-        </div>
-      </section>
-    </>
+        <section className="booking">
+          <div className="calendar-section">
+            <Calendar />
+          </div>
+          <div className="booking-info">
+            <h2>PIETEIKTIES UZ APSKATI</h2>
+            <p>
+              Ja tava automašīna prasa rūpes vai remontu, mēs esam šeit, lai
+              palīdzētu! Tavs auto ir pelnījis vislabāko apkopi, un mūsu
+              pieredzējušā komanda ir gatava nodrošināt kvalitatīvus
+              pakalpojumus.
+            </p>
+          </div>
+        </section>
+
+        <section className="about">
+          <h2>PAR MUMS</h2>
+          <div className="about-content">
+            <div className="about-text">
+              <p>
+                Autoserviss "AutoWeb" ir jūsu uzticamais partneris automobiļu
+                apkopē un remontā. Mēs lepojamies ar vairāk nekā 473 gadu
+                pieredzi nozares laikā un mūsu kvalificētā komanda ir apņēmusies
+                nodrošināt visaugstāko kvalitāti un profesionalitāti.
+              </p>
+            </div>
+            <div className="about-image">
+              <img
+                src="/placeholder.svg?height=400&width=600"
+                alt="Auto service"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 }

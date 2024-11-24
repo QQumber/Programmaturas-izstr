@@ -2,67 +2,34 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import styles from "./Navbar.module.css";
+import { IoMenu, IoClose } from "react-icons/io5";
 
-export default function Navigacija() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className={styles.nav}>
-      <div className={styles.container}>
-        <Link href="/" className={styles.logo}>
-          AutoWeb
+    <nav className="navbar">
+      <Link href="/" className="logo">
+        AutoWeb
+      </Link>
+      <button className="menu-button" onClick={toggleMenu}>
+        {isMenuOpen ? <IoClose /> : <IoMenu />}
+      </button>
+      <div className={`nav-links ${isMenuOpen ? "active" : ""}`}>
+        <Link href="/sakums">Sākums</Link>
+        <Link href="/pakalpojumi">Pakalpojumi</Link>
+        <Link href="/par-mums">Par mums</Link>
+        <Link href="/kontakti">Kontakti</Link>
+        <Link href="/rezervet" className="btn-primary">
+          Rezervēt
         </Link>
-        <div
-          className={`${styles.menuToggle} ${isOpen ? styles.open : ""}`}
-          onClick={toggleMenu}
-          aria-expanded={isOpen}
-          aria-label="Toggle navigation menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul className={`${styles.menu} ${isOpen ? styles.open : ""}`}>
-          <li>
-            <Link href="/" onClick={toggleMenu}>
-              Sākums
-            </Link>
-          </li>
-          <li>
-            <Link href="/services" onClick={toggleMenu}>
-              Pakalpojumi
-            </Link>
-          </li>
-          <li>
-            <Link href="/par-mums" onClick={toggleMenu}>
-              Par mums
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" onClick={toggleMenu}>
-              Kontakti
-            </Link>
-          </li>
-          <li>
-            <Link href="/book" className={styles.button} onClick={toggleMenu}>
-              Rezervēt vizīti
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/login"
-              className={styles.adminButton}
-              onClick={toggleMenu}
-            >
-              Darbinieku/Admin pieslēgšanās
-            </Link>
-          </li>
-        </ul>
+        <Link href="/pieslegties" className="btn-secondary">
+          Pieslēgties
+        </Link>
       </div>
     </nav>
   );
