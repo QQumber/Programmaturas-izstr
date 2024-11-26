@@ -736,4 +736,144 @@ main {
   color: #0056b3;
 }
 
+/* Admin Page Styles */
+.admin-container {
+  padding: 2%;
+  width: 100%;
+  color: black;
+  height: 900px;
+}
+
+.admin-header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.admin-main-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 100%;
+}
+
+.admin-left-panel {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-right-panel {
+  flex: 7;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-card {
+  height: 40%;
+  flex: 1;
+  margin: 20px 0px 20px 0px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.admin-card h3 {
+  text-align: center;
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.admin-scrollable {
+  overflow-y: auto;
+  height: 85%;
+}
+
+.admin-scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin-scrollable::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 5px;
+}
+
+.admin-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.admin-list-item .admin-name {
+  font-weight: bold;
+}
+
+.admin-list-item .details {
+  color: #666;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.admin-list-item .admin-report-link {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+}
+
+.admin-list-item .admin-report-link:hover {
+  text-decoration: underline;
+}
+
+.admin-add-button {
+  text-align: center;
+  background-color: #eaeaea;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.admin-add-button:hover {
+  background-color: #dcdcdc;
+}
+
+.admin-schedule-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.admin-grid-cell {
+  width: calc(100% / 6 - 10px);
+  height: 50px;
+  background-color: #ececec;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Add responsive styles for admin page */
+@media (max-width: 768px) {
+  .admin-main-content {
+    flex-direction: column;
+  }
+  
+  .admin-left-panel,
+  .admin-right-panel {
+    flex: 1;
+  }
+  
+  .admin-grid-cell {
+    width: calc(100% / 3 - 10px);
+  }
+}
+
 
