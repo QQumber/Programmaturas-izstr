@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 
-export default function Navbar() {
+export default function Navbar({ onLoginClick }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -40,9 +40,9 @@ export default function Navbar() {
         <Link href="/rezervet" className="btn-primary">
           Rezervēt
         </Link>
-        <Link href="/pieslegties" className="btn-secondary">
+        <div className="btn-secondary" onClick={onLoginClick}>
           Pieslēgties
-        </Link>
+        </div>
       </div>
     </nav>
   );
