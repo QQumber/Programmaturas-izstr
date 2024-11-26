@@ -352,6 +352,11 @@ main {
     color: var(--text-color) !important;
     border: none;
     width: 100%;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .booking {

@@ -64,6 +64,11 @@ export default function Navbar() {
           <Link href="/rezervet" className="btn-primary">
             Rezervēt
           </Link>
+          {user?.role === 'admin' && (
+            <Link href="/admin" className="btn-primary">
+              Admin Panel
+            </Link>
+          )}
           {user ? (
             <div className="btn-secondary" onClick={handleLogout}>
               Izrakstīties
