@@ -1,44 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
 import Calendar from "./components/Calendar";
 import Footer from "./components/Footer";
 import ExpertCard from "./components/Expert-card";
-import LoginPopup from "./components/LoginPopup";
-import RegisterPopup from "./components/RegisterPopup";
 
 export default function Home() {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-
-  const toggleLoginPopup = () => {
-    setIsLoginOpen(!isLoginOpen);
-  };
-
-  const toggleRegisterPopup = () => {
-    setIsRegisterOpen(!isRegisterOpen);
-  };
-
   return (
     <div className="app-container">
-      {/* Navigācijas josla */}
-      <Navbar onLoginClick={toggleLoginPopup} />
+      <Navbar />
 
-      {/* Login Popup */}
-      <LoginPopup
-        isOpen={isLoginOpen}
-        onClose={toggleLoginPopup}
-        onCreateAccountClick={() => {
-          setIsLoginOpen(false);
-          setIsRegisterOpen(true);
-        }}
-      />
-
-      {/* Register Popup */}
-      <RegisterPopup isOpen={isRegisterOpen} onClose={toggleRegisterPopup} />
-
-      {/* Galvenais saturs */}
       <main>
         <section className="hero">
           <h1>Laipni lūgti AutoWeb</h1>
