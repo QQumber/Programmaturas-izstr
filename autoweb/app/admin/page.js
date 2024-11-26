@@ -1,6 +1,24 @@
+"use client";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 const AdminPage = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user || user.role !== 'admin') {
+      router.push('/'); // Redirect to home page if not admin
+    }
+  }, [user, router]);
+
+  // Don't render anything while checking auth status or if not admin
+  if (!user || user.role !== 'admin') {
+    return null;
+  }
+
   const employees = [
     { id: 1, name: "Vārds Uzvārds" },
     { id: 2, name: "Vārds Uzvārds" },
