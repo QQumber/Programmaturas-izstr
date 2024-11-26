@@ -5,11 +5,13 @@ import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import LoginPopup from "./LoginPopup";
 import RegisterPopup from "./RegisterPopup";
+import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const { user, logout, login } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,6 +23,15 @@ export default function Navbar() {
 
   const toggleRegisterPopup = () => {
     setIsRegisterOpen(!isRegisterOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  const handleLoginSuccess = (userData) => {
+    login(userData);
+    setIsLoginOpen(false);
   };
 
   const scrollToFooter = (e) => {
@@ -53,9 +64,15 @@ export default function Navbar() {
           <Link href="/rezervet" className="btn-primary">
             Rezervēt
           </Link>
-          <div className="btn-secondary" onClick={toggleLoginPopup}>
-            Pieslēgties
-          </div>
+          {user ? (
+            <div className="btn-secondary" onClick={handleLogout}>
+              Izrakstīties
+            </div>
+          ) : (
+            <div className="btn-secondary" onClick={toggleLoginPopup}>
+              Pieslēgties
+            </div>
+          )}
         </div>
       </nav>
 
@@ -66,6 +83,7 @@ export default function Navbar() {
           setIsLoginOpen(false);
           setIsRegisterOpen(true);
         }}
+        onLoginSuccess={handleLoginSuccess}
       />
 
       <RegisterPopup 
