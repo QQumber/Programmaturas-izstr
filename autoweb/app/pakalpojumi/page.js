@@ -1,46 +1,30 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const services = [
-  {
-    category: "Regulārā Apkope",
-    items: [
-      { name: "Eļļas un filtra maiņa", price: "45-70" },
-      { name: "Gaisa filtra nomaiņa", price: "20-35" },
-      { name: "Degvielas filtra nomaiņa", price: "40-80" },
-      { name: "Bremžu šķidruma maiņa", price: "45-70" },
-    ],
-  },
-  {
-    category: "Bremžu Sistēma",
-    items: [
-      { name: "Bremžu kluču nomaiņa (priekšā)", price: "60-100" },
-      { name: "Bremžu disku nomaiņa (priekšā)", price: "150-250" },
-      { name: "Bremžu kluču nomaiņa (aizmugurē)", price: "50-90" },
-      { name: "Bremžu disku nomaiņa (aizmugurē)", price: "130-220" },
-    ],
-  },
-  {
-    category: "Dzinēja Remonts",
-    items: [
-      { name: "Aizdedzes sveču nomaiņa", price: "40-80" },
-      { name: "Ģeneratora nomaiņa", price: "200-400" },
-      { name: "Startera nomaiņa", price: "150-300" },
-      { name: "Dzinēja diagnostika", price: "40-70" },
-    ],
-  },
-  {
-    category: "Piekare un Ritošā Daļa",
-    items: [
-      { name: "Amortizatoru nomaiņa (2 gab.)", price: "200-400" },
-      { name: "Riteņu gultņu maiņa", price: "80-150" },
-      { name: "Piekares sviru nomaiņa", price: "100-200" },
-      { name: "Riepu maiņa un balansēšana", price: "40-60" },
-    ],
-  },
-];
-
 export default function Services() {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/services')
+      .then(res => res.json())
+      .then(data => {
+        setServices(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError('Failed to load services');
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
     <div className="app-container">
       <Navbar />

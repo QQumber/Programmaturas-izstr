@@ -104,6 +104,11 @@ main {
   padding: 2rem;
   border-radius: 8px;
   text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.expert-card:hover {
+  transform: translateY(-10px);
 }
 
 .expert-icon {
@@ -430,8 +435,7 @@ main {
 .about-hero {
   text-align: center;
   padding: 6rem 2rem;
-  background: linear-gradient(rgba(42, 42, 42, 0.8), rgba(42, 42, 42, 0.8)),
-    url("/hero-bg.jpg") center/cover;
+  background: linear-gradient(rgba(42, 42, 42, 0.8), rgba(42, 42, 42, 0.8));
   margin: -2rem -2rem 2rem -2rem;
 }
 
