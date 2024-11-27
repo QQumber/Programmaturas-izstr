@@ -133,9 +133,16 @@ main {
 
 .calendar {
   background-color: white;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 1rem;
   color: var(--primary-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calendar:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
 }
 
 .calendar-header {
@@ -207,10 +214,24 @@ main {
   padding: 2rem 0;
 }
 
+.about-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
 .about-image img {
-  width: 100%;
+  width: 70%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
 }
 
 /* Footer */
@@ -599,7 +620,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -608,26 +629,32 @@ main {
 
 /* Popup Content */
 .popup-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--primary-color);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   width: 90%;
   max-width: 400px;
   position: relative;
   animation: fadeIn 0.3s ease-in-out;
+  border: 1px solid var(--secondary-color);
 }
 
 /* Close Button */
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #333;
+  color: var(--text-color);
+  transition: color 0.2s ease;
+}
+
+.close-button:hover {
+  color: var(--secondary-color);
 }
 
 .popup-title {
@@ -635,85 +662,103 @@ main {
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: center;
-  color:#2a2a2a;
+  color: var(--text-color);
 }
 
 .popup-subtitle {
   font-size: 1rem;
-  color: #666;
+  color: #888;
   margin-bottom: 1.5rem;
   text-align: center;
-  color:#2a2a2a;
 }
 
 /* Form Styling */
 .popup-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .form-group label {
-  margin-bottom: 0.5rem;
+  color: var(--text-color);
   font-size: 0.9rem;
-  color: #333;
 }
 
 .form-group input {
   padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
   font-size: 1rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
 }
 
 .form-group input:focus {
-  border-color: #007bff;
+  border-color: var(--secondary-color);
   outline: none;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Primary Button */
 .btn-submitLogin {
   padding: 0.8rem;
-  background: linear-gradient(45deg, #007bff, #0056b3);
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
 }
 
 .btn-submitLogin:hover {
-  background: linear-gradient(45deg, #0056b3, #003f7f);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 165, 0, 0.3);
 }
 
 /* Footer Links */
 .popup-footer {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #666;
+  color: #888;
 }
 
-.popup-footer a {
-  color: #007bff;
-  font-weight: bold;
+.link-button {
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
   transition: color 0.2s ease;
 }
 
-.popup-footer a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+.link-button:hover {
+  color: #ffc04d;
 }
 
-.popupText {
-  color:#2a2a2a;
+.error-message {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff4444;
+  padding: 0.8rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 /* Animation */

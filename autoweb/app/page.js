@@ -63,14 +63,15 @@ export default function Home() {
             <div className="about-text">
               <p>
                 Autoserviss "AutoWeb" ir jūsu uzticamais partneris automobiļu
-                apkopē un remontā. Mēs lepojamies ar vairāk nekā 473 gadu
-                pieredzi nozares laikā un mūsu kvalificētā komanda ir apņēmusies
-                nodrošināt visaugstāko kvalitāti un profesionalitāti.
+                apkopē un remontā. Mēs lepojamies ar mūsu profesionālo komandu,
+                kas kopš 2020. gada ir apkalpojusi simtiem apmierinātu klientu.
+                Mūsu kvalificētie speciālisti ir apņēmušies nodrošināt visaugstāko
+                kvalitāti un profesionalitāti katrā auto remonta darbā.
               </p>
             </div>
             <div className="about-image">
               <img
-                src="/placeholder.svg?height=400&width=600"
+                src="/cars.jpg"
                 alt="Auto service"
               />
             </div>

@@ -69,26 +69,29 @@ export default function RegisterPopup({ isOpen, onClose }) {
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        <h2 className="popup-title">Profila Izveide</h2>
-        {error && <p className="error-message" style={{color: 'red', textAlign: 'center'}}>{error}</p>}
+        <h2 className="popup-title">Izveidot profilu</h2>
+        <p className="popup-subtitle">Lūdzu, aizpildiet reģistrācijas formu</p>
+        {error && <p className="error-message" style={{color: 'red', textAlign: 'center'}}>
+          {error === 'Username already exists' ? 'Lietotājvārds jau eksistē' : error}
+        </p>}
         <form className="popup-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="username">Lietotajvards</label>
+            <label htmlFor="username">Lietotājvārds</label>
             <input 
               type="text" 
               id="username" 
-              placeholder="Ievadiet savu lietotājvārdu" 
+              placeholder="Ievadiet lietotājvārdu" 
               required 
               value={formData.username}
               onChange={handleChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="name">Vārds</label>
+            <label htmlFor="name">Vārds, Uzvārds</label>
             <input 
               type="text" 
               id="name" 
-              placeholder="Ievadiet savu vārdu" 
+              placeholder="Ievadiet vārdu un uzvārdu" 
               required 
               value={formData.name}
               onChange={handleChange}
@@ -106,7 +109,7 @@ export default function RegisterPopup({ isOpen, onClose }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="rePassword">Atkātoti parole</label>
+            <label htmlFor="rePassword">Atkārtoti parole</label>
             <input 
               type="password" 
               id="rePassword" 
@@ -128,7 +131,7 @@ export default function RegisterPopup({ isOpen, onClose }) {
             />
           </div>
           <button type="submit" className="btn-submitLogin">
-            Register
+            Reģistrēties
           </button>
         </form>
       </div>
