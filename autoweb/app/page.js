@@ -66,7 +66,7 @@ export default function Home() {
           <div className="about-content">
             <div className="about-text">
               <p>
-                Autoserviss "AutoWeb" ir jūsu uzticamais partneris automobiļu
+                Autoserviss &quot;AutoWeb&quot; ir jūsu uzticamais partneris automobiļu
                 apkopē un remontā. Mēs lepojamies ar mūsu profesionālo komandu,
                 kas kopš 2020. gada ir apkalpojusi simtiem apmierinātu klientu.
                 Mūsu kvalificētie speciālisti ir apņēmušies nodrošināt visaugstāko
