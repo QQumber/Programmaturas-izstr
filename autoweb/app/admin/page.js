@@ -1,12 +1,16 @@
 "use client";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import PendingAppointment from "../components/PendingAppointment";
 
 const AdminPage = () => {
   const { user } = useAuth();
   const router = useRouter();
+  const [pendingAppointments, setPendingAppointments] = useState([]);
+  const [pendingData, setPendingData] = useState();
+  const [isPendingOpen, setIsPendingOpen] = useState(false);
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -19,27 +23,49 @@ const AdminPage = () => {
     return null;
   }
 
+
+  const togglePendingPopup = () => {
+    setIsPendingOpen(!isPendingOpen);
+  };
+
+  const handlePendingClick = (data) => {
+    setPendingData(data);
+    togglePendingPopup();
+  }
+
+  const onStatusUpdate = (updatedAppointment) => {
+    console.log(updatedAppointment);
+    console.log(pendingAppointments);
+
+    const newAppointmentList = pendingAppointments.filter(
+      (appointment) => appointment.id !== updatedAppointment.id
+    );
+
+    console.log(newAppointmentList);
+    setPendingAppointments(newAppointmentList);
+  }
+
+  useEffect(() => {
+    const fetchPendingAppointments = async () => {
+      try {
+        const res = await fetch('/api/appointments/list');
+        const data = await res.json();
+        setPendingAppointments(data);
+        console.log(data);
+      } catch (err) {
+        console.error('Error fetching pending appointments:', err);
+      }
+    };
+
+    fetchPendingAppointments();
+  }, [])
+
   const employees = [
     { id: 1, name: "Vārds Uzvārds" },
     { id: 2, name: "Vārds Uzvārds" },
     { id: 3, name: "Vārds Uzvārds" },
     { id: 4, name: "Vārds Uzvārds" },
     { id: 5, name: "Vārds Uzvārds" },
-  ];
-
-  const applications = [
-    { id: 1, name: "Vārds1 Uzvārds", details: "Auto Nr.1, 01.10.2024 10:00" },
-    { id: 2, name: "Vārds2 Uzvārds", details: "Auto Nr.2, Datums un laiks" },
-    { id: 3, name: "Vārds3 Uzvārds", details: "Auto Nr.3, Datums un laiks" },
-    { id: 4, name: "Vārds4 Uzvārds", details: "Auto Nr.4, Datums un laiks" },
-    { id: 5, name: "Vārds1 Uzvārds", details: "Auto Nr.1, 01.10.2024 10:00" },
-    { id: 6, name: "Vārds2 Uzvārds", details: "Auto Nr.2, Datums un laiks" },
-    { id: 7, name: "Vārds3 Uzvārds", details: "Auto Nr.3, Datums un laiks" },
-    { id: 8, name: "Vārds4 Uzvārds", details: "Auto Nr.4, Datums un laiks" },
-    { id: 11, name: "Vārds1 Uzvārds", details: "Auto Nr.1, 01.10.2024 10:00" },
-    { id: 12, name: "Vārds2 Uzvārds", details: "Auto Nr.2, Datums un laiks" },
-    { id: 13, name: "Vārds3 Uzvārds", details: "Auto Nr.3, Datums un laiks" },
-    { id: 14, name: "Vārds4 Uzvārds", details: "Auto Nr.4, Datums un laiks" },
   ];
 
   return (
@@ -69,11 +95,13 @@ const AdminPage = () => {
             <div className="admin-card">
               <h3>Pieteikumi</h3>
               <div className="admin-scrollable">
-                {applications.map((app) => (
-                  <div key={app.id} className="admin-list-item">
-                    <span className="admin-name">{app.name}</span>
-                    <span className="admin-details">{app.details}</span>
-                    <a href="#" className="admin-report-link">
+                {pendingAppointments.map((item) => (
+                  <div key={item.id} className="admin-list-item">
+                    <span className="admin-name">{item.name}</span>
+                    <span className="admin-details">
+                      {item.license_plate}, {item.time}, {item.date}
+                    </span>
+                    <a href="#" className="admin-report-link" onClick={() => handlePendingClick(item)}>
                       pārskats
                     </a>
                   </div>
@@ -92,6 +120,13 @@ const AdminPage = () => {
           </div>
         </div>
       </div>
+
+      <PendingAppointment
+        appointmentData={pendingData}
+        isOpen={isPendingOpen} 
+        onClose={togglePendingPopup}
+        onStatusUpdate={onStatusUpdate}
+      />
     </>
   );
 };
