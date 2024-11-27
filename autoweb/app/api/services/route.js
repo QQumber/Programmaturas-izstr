@@ -5,8 +5,10 @@ export async function GET() {
         const result = await query(`
             SELECT category, 
                    json_agg(json_build_object(
+                       'id', id,
                        'name', name,
-                       'price', price_low || '-' || price_high
+                       'price', price_low || '-' || price_high,
+                       'description', description
                    )) as items
             FROM services 
             GROUP BY category

@@ -46,6 +46,18 @@ export default function Navbar() {
     }
   };
 
+  const scrollToCalendar = (e) => {
+    e.preventDefault();
+    const calendar = document.querySelector(".calendar");
+    if (calendar) {
+      calendar.scrollIntoView({ behavior: "smooth" });
+      calendar.classList.add("highlight-section");
+      setTimeout(() => {
+        calendar.classList.remove("highlight-section");
+      }, 2000);
+    }
+  };
+
   return (
     <>
       <nav className="navbar">
@@ -61,7 +73,7 @@ export default function Navbar() {
           <Link href="/kontakti" onClick={scrollToFooter}>
             Kontakti
           </Link>
-          <Link href="/rezervet" className="btn-primary">
+          <Link href="/rezervet" className="btn-primary" onClick={scrollToCalendar}>
             Rezervēt
           </Link>
           {user?.role === 'admin' && (
