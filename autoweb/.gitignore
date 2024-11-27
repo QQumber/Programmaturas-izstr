@@ -34,7 +34,3 @@ next-env.d.ts
 # OS files
 .DS_Store
 *.pem
-
-# test
-/app/test
-/app/api/test
