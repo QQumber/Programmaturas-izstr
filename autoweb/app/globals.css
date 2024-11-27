@@ -413,15 +413,16 @@ main {
 }
 
 .service-category {
-  background-color: var(--primary-color);
-  padding: 2rem;
-  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 4px;
 }
 
-.service-category h2 {
-  color: var(--secondary-color);
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+.service-category h5 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-color);
+  font-size: 1rem;
 }
 
 .service-items {
@@ -974,6 +975,201 @@ main {
   background-color: var(--primary-color);
   border-radius: 8px;
   margin-top: 1rem;
+}
+
+.booking-form-container {
+  margin-top: 2rem;
+}
+
+.booking-form {
+  background-color: var(--primary-color);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section input,
+.form-section textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+}
+
+.service-category {
+  margin-bottom: 1.5rem;
+}
+
+.service-select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  background-color: white;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.service-select optgroup {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.service-select option {
+  padding: 0.5rem;
+  color: var(--primary-color);
+}
+
+.custom-service {
+  margin-top: 1rem;
+}
+
+.custom-service textarea {
+  width: 100%;
+  height: 100px;
+  padding: 0.8rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.selected-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.selected-service-tag {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.remove-service {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.custom-service {
+  margin-top: 1rem;
+}
+
+.custom-service.show {
+  display: block;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #666;
+  color: white;
+}
+
+.service-checkbox {
+  display: inline-block;
+  margin: 0 1rem 0.5rem 0;
+  background-color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+
+.service-checkbox input {
+  margin-right: 0.5rem;
+}
+
+.custom-service {
+  margin-top: 1rem;
+}
+
+.custom-service textarea {
+  height: 60px;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  background-color: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.service-category {
+  margin-bottom: 1rem;
+}
+
+.service-category h5 {
+  color: var(--primary-color);
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.service-checkbox {
+  display: block;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.service-checkbox:hover {
+  background-color: #f5f5f5;
+}
+
+.service-checkbox input {
+  margin-right: 0.8rem;
+}
+
+.calendar-day-weekend {
+  background: #ffebee !important;
+  color: #d32f2f !important;
+  cursor: not-allowed !important;
+}
+
+.calendar-day-weekend:hover {
+  background: #ffcdd2 !important;
+  color: #d32f2f !important;
 }
 
 

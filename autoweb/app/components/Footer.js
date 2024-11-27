@@ -6,27 +6,27 @@ export default function Footer() {
         <ul>
           <li>
             <span className="day">Pirmdiena</span>
-            <span className="time">5 - 22</span>
+            <span className="time">9 - 18</span>
           </li>
           <li>
             <span className="day">Otrdiena</span>
-            <span className="time">5 - 22</span>
+            <span className="time">9 - 18</span>
           </li>
           <li>
             <span className="day">Trešdiena</span>
-            <span className="time">5 - 22</span>
+            <span className="time">9 - 18</span>
           </li>
           <li>
             <span className="day">Ceturtdiena</span>
-            <span className="time">5 - 22</span>
+            <span className="time">9 - 18</span>
           </li>
           <li>
             <span className="day">Piektdiena</span>
-            <span className="time">4 - 23</span>
+            <span className="time">9 - 18</span>
           </li>
           <li className="weekend">
             <span className="day">Sestdiena</span>
-            <span className="time">3 - 23</span>
+            <span className="time">---</span>
           </li>
           <li className="weekend">
             <span className="day">Svētdiena</span>

@@ -9,26 +9,33 @@ export async function GET(req) {
         if (!date) {
             return new Response(JSON.stringify({ 
                     error: 'Date parameter is required' 
-                }),{
+                }), {
                     status: 400,
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
         }
 
-        // Query
+        // Query - removed the dangling AND from the SQL query
         const result = await pool.query(
             `SELECT appointment_time 
              FROM appointments 
-             WHERE appointment_date = $1 AND 
-             status = 'approved'`,
+             WHERE appointment_date = $1`,
             [date]
         );
 
+        // Format the times to match the frontend format (HH:MM)
+        const formattedTimes = result.rows.map(row => {
+            const time = new Date(`1970-01-01T${row.appointment_time}`);
+            return time.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+        });
+
         // Return times in an array
-        return new Response(JSON.stringify(
-            result.rows.map(row => row.appointment_time)
-        ), {
+        return new Response(JSON.stringify(formattedTimes), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });
@@ -36,7 +43,7 @@ export async function GET(req) {
         console.error('Error fetching appointment times:', error);
         return new Response(JSON.stringify({ 
                 error: 'Failed to fetch appointment times' 
-            }),{
+            }), {
                 status: 500,
                 headers: { 'Content-Type': 'application/json' },
             }

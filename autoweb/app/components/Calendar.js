@@ -32,7 +32,14 @@ export default function Calendar({ onDateSelect }) {
 
   const getFirstDayOfMonth = (month, year) => {
     let day = new Date(year, month, 1).getDay();
-    return day === 0 ? 6 : day - 1; // Adjust Sunday from 0 to 6 for Monday-based week
+    return day === 0 ? 6 : day - 1;
+  };
+
+  const isWeekend = (dayNumber) => {
+    if (dayNumber <= 0) return false;
+    const date = new Date(currentYear, currentMonthIndex, dayNumber);
+    const day = date.getDay();
+    return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
   };
 
   const handlePrevMonth = () => {
@@ -84,16 +91,17 @@ export default function Calendar({ onDateSelect }) {
         {Array.from({ length: totalCells }, (_, i) => {
           const dayNumber = i - firstDayOfMonth + 1;
           const isValidDay = dayNumber > 0 && dayNumber <= daysInMonth;
+          const isWeekendDay = isWeekend(dayNumber);
 
           return (
             <button
               key={i}
               className={`calendar-day ${
                 !isValidDay ? "calendar-day-disabled" : ""
-              }`}
-              disabled={!isValidDay}
+              } ${isWeekendDay ? "calendar-day-weekend" : ""}`}
+              disabled={!isValidDay || isWeekendDay}
               onClick={() => {
-                if (isValidDay) {
+                if (isValidDay && !isWeekendDay) {
                   const selectedDate = new Date(currentYear, currentMonthIndex, dayNumber);
                   onDateSelect(selectedDate);
                 }
