@@ -4,11 +4,27 @@ export async function GET() {
     try {
         // Query
         const result = await pool.query(
-            `SELECT a.id AS appointment_id, u.name, c.license_plate, a.appointment_date, a.appointment_time
+            `SELECT 
+                a.id AS id, 
+                u.name,
+                u.phone,
+                u.email,
+                s.name AS service_name,
+                s.category AS service_category,
+                c.make,
+                c.model,
+                c.year,
+                c.VIN,
+                c.license_plate, 
+                TO_CHAR(a.appointment_date, 'DD.MM.YYYY') AS date, 
+                TO_CHAR(a.appointment_time, 'HH24:MI') AS time,
+                a.notes
             FROM appointments a
             JOIN user_profiles u ON a.client_id = u.id
             JOIN cars c ON a.car_id = c.id
-            WHERE a.status = 'pending'`
+            JOIN services s ON a.service_id = s.id
+            WHERE a.status = 'pending'
+            ORDER BY a.appointment_date ASC, a.appointment_time ASC`
         );
 
         if (result.rows.length > 0) {
