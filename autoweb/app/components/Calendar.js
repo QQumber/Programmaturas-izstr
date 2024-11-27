@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
-export default function Calendar() {
+export default function Calendar({ onDateSelect }) {
   const months = [
     "Janvāris",
     "Februāris",
@@ -92,6 +92,12 @@ export default function Calendar() {
                 !isValidDay ? "calendar-day-disabled" : ""
               }`}
               disabled={!isValidDay}
+              onClick={() => {
+                if (isValidDay) {
+                  const selectedDate = new Date(currentYear, currentMonthIndex, dayNumber);
+                  onDateSelect(selectedDate);
+                }
+              }}
             >
               {isValidDay ? dayNumber : ""}
             </button>

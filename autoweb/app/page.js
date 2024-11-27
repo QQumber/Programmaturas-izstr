@@ -1,12 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Calendar from "./components/Calendar";
 import Footer from "./components/Footer";
 import ExpertCard from "./components/Expert-card";
+import BookingComponent from "./components/Booking";
 
 export default function Home() {
+  const [selectedDate, setSelectedDate] = useState(null);
+
   return (
     <div className="app-container">
       <Navbar />
@@ -44,7 +47,7 @@ export default function Home() {
 
         <section className="booking">
           <div className="calendar-section">
-            <Calendar />
+            <Calendar onDateSelect={setSelectedDate} />
           </div>
           <div className="booking-info">
             <h2>PIETEIKTIES UZ APSKATI</h2>
@@ -54,6 +57,7 @@ export default function Home() {
               pieredzējušā komanda ir gatava nodrošināt kvalitatīvus
               pakalpojumus.
             </p>
+            <BookingComponent selectedDate={selectedDate} />
           </div>
         </section>
 
