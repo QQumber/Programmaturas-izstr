@@ -1197,4 +1197,84 @@ main {
   color: #d32f2f !important;
 }
 
+.appointment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.appointment-time {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.appointment-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-finish {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-finish:hover {
+  background-color: #218838;
+}
+
+.btn-cancel:hover {
+  background-color: #c82333;
+}
+
+.no-appointments {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}
+
+.name-phone-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-phone {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.detail-label {
+  color: #666;
+  font-size: 0.9rem;
+  margin-right: 4px;
+  margin-left: 8px;
+}
+
+.detail-label:first-child {
+  margin-left: 0;
+}
+
+.admin-details {
+  color: #333;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
 

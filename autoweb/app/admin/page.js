@@ -9,9 +9,68 @@ const AdminPage = () => {
   const { user } = useAuth();
   const router = useRouter();
   const [pendingAppointments, setPendingAppointments] = useState([]);
+  const [approvedAppointments, setApprovedAppointments] = useState([]);
   const [pendingData, setPendingData] = useState();
   const [isPendingOpen, setIsPendingOpen] = useState(false);
 
+  // First useEffect for fetching appointments
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        // Fetch pending appointments
+        const pendingRes = await fetch('/api/appointments/list');
+        if (!pendingRes.ok) {
+          throw new Error('Failed to fetch pending appointments');
+        }
+        const pendingData = await pendingRes.json();
+        setPendingAppointments(pendingData);
+
+        // Fetch approved appointments
+        const approvedRes = await fetch('/api/appointments/approved');
+        if (!approvedRes.ok) {
+          throw new Error('Failed to fetch approved appointments');
+        }
+        const approvedData = await approvedRes.json();
+        setApprovedAppointments(approvedData);
+      } catch (err) {
+        console.error('Error fetching appointments:', err.message);
+        // Optionally set some error state here if you want to show error messages to users
+      }
+    };
+
+    fetchAppointments();
+  }, []);
+
+  // Handle appointment status update
+  const handleAppointmentAction = async (appointmentId, status) => {
+    try {
+      const response = await fetch('/api/appointments/update_status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          appointment_id: appointmentId,
+          status: status
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update appointment status');
+      }
+
+      // Update the appointments list after successful status update
+      setApprovedAppointments(prev => 
+        prev.filter(appointment => appointment.id !== appointmentId)
+      );
+
+    } catch (error) {
+      console.error('Error updating appointment:', error);
+      alert('Failed to update appointment status');
+    }
+  };
+
+  // Second useEffect for auth check (moved after other hooks)
   useEffect(() => {
     if (!user || user.role !== 'admin') {
       router.push('/'); // Redirect to home page if not admin
@@ -22,7 +81,6 @@ const AdminPage = () => {
   if (!user || user.role !== 'admin') {
     return null;
   }
-
 
   const togglePendingPopup = () => {
     setIsPendingOpen(!isPendingOpen);
@@ -44,21 +102,6 @@ const AdminPage = () => {
     console.log(newAppointmentList);
     setPendingAppointments(newAppointmentList);
   }
-
-  useEffect(() => {
-    const fetchPendingAppointments = async () => {
-      try {
-        const res = await fetch('/api/appointments/list');
-        const data = await res.json();
-        setPendingAppointments(data);
-        console.log(data);
-      } catch (err) {
-        console.error('Error fetching pending appointments:', err);
-      }
-    };
-
-    fetchPendingAppointments();
-  }, [])
 
   const employees = [
     { id: 1, name: "Vārds Uzvārds" },
@@ -99,7 +142,9 @@ const AdminPage = () => {
                   <div key={item.id} className="admin-list-item">
                     <span className="admin-name">{item.name}</span>
                     <span className="admin-details">
-                      {item.license_plate}, {item.time}, {item.date}
+                      <span className="detail-label">Auto:</span> {item.license_plate}, 
+                      <span className="detail-label">Laiks:</span> {item.time}, 
+                      <span className="detail-label">Datums:</span> {item.date}
                     </span>
                     <a href="#" className="admin-report-link" onClick={() => handlePendingClick(item)}>
                       pārskats
@@ -111,10 +156,42 @@ const AdminPage = () => {
 
             <div className="admin-card">
               <h3>Grafiks</h3>
-              <div className="admin-schedule-grid">
-                {Array.from({ length: 30 }).map((_, index) => (
-                  <div key={index} className="admin-grid-cell"></div>
+              <div className="admin-scrollable">
+                {approvedAppointments.map((appointment) => (
+                  <div key={appointment.id} className="admin-list-item">
+                    <div className="appointment-info">
+                      <div className="name-phone-container">
+                        <span className="admin-name">{appointment.name}</span>
+                        <span className="admin-phone">• {appointment.phone}</span>
+                      </div>
+                      <span className="admin-details">
+                        {appointment.service_name} - {appointment.license_plate}
+                      </span>
+                      <span className="appointment-time">
+                        {appointment.date}, {appointment.time}
+                      </span>
+                    </div>
+                    <div className="appointment-actions">
+                      <button 
+                        className="btn-finish"
+                        onClick={() => handleAppointmentAction(appointment.id, 'completed')}
+                      >
+                        Pabeigt
+                      </button>
+                      <button 
+                        className="btn-cancel"
+                        onClick={() => handleAppointmentAction(appointment.id, 'cancelled')}
+                      >
+                        Atcelt
+                      </button>
+                    </div>
+                  </div>
                 ))}
+                {approvedAppointments.length === 0 && (
+                  <div className="no-appointments">
+                    Nav apstiprinātu rezervāciju
+                  </div>
+                )}
               </div>
             </div>
           </div>
