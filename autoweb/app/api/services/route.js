@@ -1,3 +1,6 @@
+export const dynamic = 'force-static';
+export const revalidate = 0;
+
 import { query } from '../db';
 
 export async function GET() {

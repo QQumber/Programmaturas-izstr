@@ -1,3 +1,6 @@
+export const dynamic = 'force-static';
+export const revalidate = 0;
+
 import bcrypt from 'bcryptjs';
 import { query } from '../../db';
 

@@ -1,3 +1,6 @@
+export const dynamic = 'force-static';
+export const revalidate = 0;
+
 import { pool } from '../../db'; // Import the DB connection pool
 
 export async function POST(request) {
